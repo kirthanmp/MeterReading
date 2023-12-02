@@ -34,10 +34,9 @@ public class MeterReadingCommandController {
         return meterReadingCommandService.createMeterReading(meterReadingListDTO);
     }
 
-    @PutMapping(value = "/update/{meterReadingId}")
-    public CompletableFuture<String> updateMeterReading(@PathVariable(value = "meterReadingId") String meterReadingId,
-                                                        @RequestBody MeterReadingDTO meterReadingDTO) {
-        return meterReadingCommandService.updateMeterReading(meterReadingId, meterReadingDTO);
+    @PutMapping(value = "/update")
+    public CompletableFuture<List<MeterReadingResponse>> updateMeterReading(@RequestBody List<MeterReadingListDTO> meterReadingListDTO) {
+        return meterReadingCommandService.updateMeterReading(meterReadingListDTO);
     }
 
 }

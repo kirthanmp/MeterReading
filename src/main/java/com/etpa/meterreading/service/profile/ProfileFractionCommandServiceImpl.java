@@ -49,9 +49,9 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
                             ));
                 }
 
-                responses.add(buildResponse(profile, true));
+                responses.add(buildResponse(profile, true, "Profile Fraction Created Successfully"));
             } else {
-                responses.add(buildResponse(profile, false));
+                responses.add(buildResponse(profile, false, "Profile Fraction Sum Should be 1.0"));
             }
         }
         return CompletableFuture.completedFuture(responses);
@@ -64,7 +64,7 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
         List<ProfileFractionQueryEntity> profileFractionQueryEntityList = profileFractionQueryService.getProfileFractionByProfile(profile);
         CompletableFuture<String>[] completableFuture = new CompletableFuture[fractionDTO.size()];
         if (fraction > 1.0) {
-            responses.add(buildResponse(profile, false));
+            responses.add(buildResponse(profile, false, "Profile Fraction Sum Should be 1.0"));
         } else {
             for (FractionDTO updateFraction : fractionDTO) {
                 completableFuture[fractionDTO.indexOf(updateFraction)] =
@@ -75,7 +75,7 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
                                 updateFraction.getFraction()
                         ));
             }
-            responses.add(buildResponse(profile, true));
+            responses.add(buildResponse(profile, true, "Profile Fraction Updated Successfully"));
         }
         return CompletableFuture.completedFuture(responses);
     }
@@ -95,32 +95,19 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
         }
     }
 
-    private ProfileFractionResponse buildResponse(String profile, boolean status) {
+    private ProfileFractionResponse buildResponse(String profile, boolean status, String message) {
         if (status) {
             return ProfileFractionResponse.builder()
                     .profile(profile)
                     .status(Status.SUCCESS)
+                    .message(message)
                     .build();
         } else {
             return ProfileFractionResponse.builder()
                     .profile(profile)
                     .status(Status.FAILED)
+                    .message(message)
                     .build();
         }
     }
-
-    @Override
-    public CompletableFuture<String> deleteProfileFraction(String profileFractionId, ProfileFractionDTO profileFractionDTO) {
-        return commandGateway.send(new ProfileFractionDeleteProfileCommand(profileFractionId,
-                profileFractionDTO.getMonths(),
-                profileFractionDTO.getProfile(),
-                profileFractionDTO.getFraction()));
-    }
-
-    @Override
-    public void deleteProfile(String profile) {
-        profileFractionQueryService.deleteProfile(profile);
-    }
-
-
 }

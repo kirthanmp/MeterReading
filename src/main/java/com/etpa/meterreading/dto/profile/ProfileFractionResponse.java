@@ -10,4 +10,6 @@ public class ProfileFractionResponse {
 
     private String profile;
     private Status status;
+    private String message;
+
 }

@@ -36,4 +36,9 @@ public class MeterReadingQueryServiceImpl implements MeterReadingQueryService {
         return meterReadingRepository.findMeterReadingQueryEntitiesByProfile(profile);
     }
 
+    @Override
+    public List<MeterReadingQueryEntity> getMeterReadingByMeterID(String meterID) {
+        return meterReadingRepository.findMeterReadingQueryEntityByMeterID(meterID);
+    }
+
 }

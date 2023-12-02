@@ -12,4 +12,6 @@ public interface MeterReadingQueryService {
 
     List<MeterReadingQueryEntity> getMeterReadingByProfile(String profile);
 
+    List<MeterReadingQueryEntity> getMeterReadingByMeterID(String meterID);
+
 }

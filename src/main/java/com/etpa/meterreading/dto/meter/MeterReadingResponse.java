@@ -14,4 +14,6 @@ public class MeterReadingResponse {
 
     private Status status;
 
+    private String message;
+
 }

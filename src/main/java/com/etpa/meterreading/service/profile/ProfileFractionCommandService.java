@@ -14,7 +14,4 @@ public interface ProfileFractionCommandService {
 
     public CompletableFuture<List<ProfileFractionResponse>> updateProfileFraction(String profileFractionId, List<FractionDTO> fractionDTO);
 
-    public CompletableFuture<String> deleteProfileFraction(String profileFractionId, ProfileFractionDTO profileFractionDTO);
-
-    void deleteProfile(String profile);
 }

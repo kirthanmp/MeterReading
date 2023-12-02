@@ -1,7 +1,9 @@
 package com.etpa.meterreading.service.profile;
 
+import com.etpa.meterreading.dto.profile.ProfileFractionResponse;
 import com.etpa.meterreading.entities.ProfileFractionQueryEntity;
 import com.etpa.meterreading.repository.ProfileFractionRepository;
+import com.etpa.meterreading.utils.Status;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +39,13 @@ public class ProfileFractionQueryServiceImpl implements ProfileFractionQueryServ
     }
 
     @Override
-    public void deleteProfile(String profile) {
+    public ProfileFractionResponse deleteProfile(String profile) {
         List<ProfileFractionQueryEntity> profileFractionQueryEntityList = profileFractionRepository.findProfileFractionQueryEntityByProfile(profile);
         profileFractionRepository.deleteAll(profileFractionQueryEntityList);
+        return ProfileFractionResponse.builder()
+                .profile(profile)
+                .status(Status.SUCCESS)
+                .message("Profile Deleted Successfully")
+                .build();
     }
-
 }
