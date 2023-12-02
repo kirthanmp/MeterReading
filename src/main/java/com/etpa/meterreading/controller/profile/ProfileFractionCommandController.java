@@ -1,9 +1,11 @@
 package com.etpa.meterreading.controller.profile;
 
+import com.etpa.meterreading.dto.profile.FractionDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionListDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionResponse;
 import com.etpa.meterreading.service.profile.ProfileFractionCommandService;
+import com.etpa.meterreading.service.profile.ProfileFractionQueryService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +27,12 @@ public class ProfileFractionCommandController {
 
     private final ProfileFractionCommandService profileFractionCommandService;
 
-    public ProfileFractionCommandController(ProfileFractionCommandService profileFractionCommandService) {
+    private final ProfileFractionQueryService profileFractionQueryService;
+
+    public ProfileFractionCommandController(ProfileFractionCommandService profileFractionCommandService,
+                                            ProfileFractionQueryService profileFractionQueryService) {
         this.profileFractionCommandService = profileFractionCommandService;
+        this.profileFractionQueryService = profileFractionQueryService;
     }
 
     @PostMapping(value = "/create")
@@ -34,16 +40,14 @@ public class ProfileFractionCommandController {
         return profileFractionCommandService.createProfileFraction(profileFractionListDTO);
     }
 
-    @PutMapping(value = "/update/{profileFractionId}")
-    public CompletableFuture<String> updateProfileFraction(@PathVariable(value = "profileFractionId") String profileFractionId,
-                                                           @RequestBody ProfileFractionDTO profileFractionDTO) {
-        return profileFractionCommandService.updateProfileFraction(profileFractionId, profileFractionDTO);
+    @PutMapping(value = "/update/{profile}")
+    public CompletableFuture<List<ProfileFractionResponse>> updateProfileFraction(@PathVariable(value = "profile") String profileFractionId,
+                                                           @RequestBody List<FractionDTO> fractionDTO) {
+        return profileFractionCommandService.updateProfileFraction(profileFractionId, fractionDTO);
     }
 
-    @DeleteMapping(value = "/delete/{profileFractionId}")
-    public CompletableFuture<String> deleteProfileFraction(@PathVariable(value = "profileFractionId") String profileFractionId,
-                                                           @RequestBody ProfileFractionDTO profileFractionDTO) {
-        return profileFractionCommandService.deleteProfileFraction(profileFractionId, profileFractionDTO);
+    @DeleteMapping("/profile/{profile}")
+    public void deleteProfile(@PathVariable(value = "profile") String profile) {
+        profileFractionQueryService.deleteProfile(profile);
     }
-
 }

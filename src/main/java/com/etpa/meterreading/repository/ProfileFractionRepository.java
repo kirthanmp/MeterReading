@@ -14,9 +14,4 @@ public interface ProfileFractionRepository extends CrudRepository<ProfileFractio
 
     List<ProfileFractionQueryEntity> findProfileFractionQueryEntityByProfile(String profile);
 
-    void deleteByProfile(String profile);
-
-    @Query(value ="DELETE FROM ProfileFractionQueryEntity p WHERE p.profile = :profile")
-    void deleteProfileFraction(String profile);
-
 }

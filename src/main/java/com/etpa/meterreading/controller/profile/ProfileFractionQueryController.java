@@ -39,9 +39,6 @@ public class ProfileFractionQueryController {
         return profileFractionQueryService.getProfileFractionByProfile(profile);
     }
 
-    @DeleteMapping("/delete/{profile}")
-    public void deleteProfileFraction(@PathVariable(value = "profile") String profile) {
-        profileFractionQueryService.deleteProfileFraction(profile);
-    }
+
 
 }

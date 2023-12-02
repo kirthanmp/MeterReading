@@ -12,5 +12,6 @@ public interface ProfileFractionQueryService {
 
     List<ProfileFractionQueryEntity> getProfileFractionByProfile(String profile);
 
-    void deleteProfileFraction(String profile);
+    void deleteProfile(String profile);
+
 }

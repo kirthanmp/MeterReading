@@ -37,7 +37,9 @@ public class ProfileFractionQueryServiceImpl implements ProfileFractionQueryServ
     }
 
     @Override
-    public void deleteProfileFraction(String profile) {
-        profileFractionRepository.deleteProfileFraction(profile);
+    public void deleteProfile(String profile) {
+        List<ProfileFractionQueryEntity> profileFractionQueryEntityList = profileFractionRepository.findProfileFractionQueryEntityByProfile(profile);
+        profileFractionRepository.deleteAll(profileFractionQueryEntityList);
     }
+
 }

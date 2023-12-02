@@ -7,6 +7,7 @@ import com.etpa.meterreading.dto.profile.FractionDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionListDTO;
 import com.etpa.meterreading.dto.profile.ProfileFractionResponse;
+import com.etpa.meterreading.entities.ProfileFractionQueryEntity;
 import com.etpa.meterreading.utils.Status;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,11 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
 
     private final CommandGateway commandGateway;
 
-    public ProfileFractionCommandServiceImpl(CommandGateway commandGateway) {
+    private final ProfileFractionQueryService profileFractionQueryService;
+
+    public ProfileFractionCommandServiceImpl(CommandGateway commandGateway, ProfileFractionQueryService profileFractionQueryService) {
         this.commandGateway = commandGateway;
+        this.profileFractionQueryService = profileFractionQueryService;
     }
 
     @Override
@@ -54,13 +58,26 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
     }
 
     @Override
-    public CompletableFuture<String> updateProfileFraction(String profileFractionId, ProfileFractionDTO profileFractionDTO) {
-        return commandGateway.send(new ProfileFractionUpdateProfileCommand(
-                profileFractionId,
-                profileFractionDTO.getMonths(),
-                profileFractionDTO.getProfile(),
-                profileFractionDTO.getFraction()
-        ));
+    public CompletableFuture<List<ProfileFractionResponse>> updateProfileFraction(String profile, List<FractionDTO> fractionDTO) {
+        List<ProfileFractionResponse> responses = new ArrayList<>();
+        double fraction = Double.valueOf(String.valueOf(fractionDTO.stream().mapToDouble(FractionDTO::getFraction).sum()).substring(0, 3));
+        List<ProfileFractionQueryEntity> profileFractionQueryEntityList = profileFractionQueryService.getProfileFractionByProfile(profile);
+        CompletableFuture<String>[] completableFuture = new CompletableFuture[fractionDTO.size()];
+        if (fraction > 1.0) {
+            responses.add(buildResponse(profile, false));
+        } else {
+            for (FractionDTO updateFraction : fractionDTO) {
+                completableFuture[fractionDTO.indexOf(updateFraction)] =
+                        commandGateway.send(new ProfileFractionUpdateProfileCommand(
+                                profileFractionQueryEntityList.get(fractionDTO.indexOf(updateFraction)).getId(),
+                                updateFraction.getMonths(),
+                                profile,
+                                updateFraction.getFraction()
+                        ));
+            }
+            responses.add(buildResponse(profile, true));
+        }
+        return CompletableFuture.completedFuture(responses);
     }
 
     private boolean isValidFraction(List<ProfileFractionListDTO> profileFractionListDTO) {
@@ -99,5 +116,11 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
                 profileFractionDTO.getProfile(),
                 profileFractionDTO.getFraction()));
     }
+
+    @Override
+    public void deleteProfile(String profile) {
+        profileFractionQueryService.deleteProfile(profile);
+    }
+
 
 }

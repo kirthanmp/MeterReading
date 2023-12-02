@@ -40,9 +40,4 @@ public class MeterReadingCommandController {
         return meterReadingCommandService.updateMeterReading(meterReadingId, meterReadingDTO);
     }
 
-    @DeleteMapping(value = "/delete/{meterReadingId}")
-    public CompletableFuture<String> deleteMeterReading(@PathVariable(value = "meterReadingId") String meterReadingId) {
-        return meterReadingCommandService.deleteMeterReading(meterReadingId);
-    }
-
 }
