@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.etpa.meterreading.MeterreadingV1ApplicationTests" time="3.541" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.157" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -62,62 +62,6 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="contextLoads" classname="com.etpa.meterreading.MeterreadingV1ApplicationTests" time="0.29">
-    <system-out><![CDATA[11:08:14.903 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.etpa.meterreading.MeterreadingV1ApplicationTests]: MeterreadingV1ApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:08:14.951 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.etpa.meterreading.MeterreadingV1Application for test class com.etpa.meterreading.MeterreadingV1ApplicationTests
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v3.2.0)
-
-2023-12-03T11:08:15.122+02:00  INFO 66689 --- [           main] c.e.m.MeterreadingV1ApplicationTests     : Starting MeterreadingV1ApplicationTests using Java 17.0.4 with PID 66689 (started by kirthan.puttegowda in /Users/kirthan.puttegowda/Project/Others/ETPA/github/MeterReading)
-2023-12-03T11:08:15.122+02:00  INFO 66689 --- [           main] c.e.m.MeterreadingV1ApplicationTests     : No active profile set, falling back to 1 default profile: "default"
-2023-12-03T11:08:15.172+02:00  WARN 66689 --- [           main] o.s.c.annotation.AnnotationTypeMapping   : Support for convention-based annotation attribute overrides is deprecated and will be removed in Spring Framework 6.2. Please annotate the following attributes in @org.axonframework.spring.stereotype.Aggregate with appropriate @AliasFor declarations: [type]
-2023-12-03T11:08:15.173+02:00  WARN 66689 --- [           main] o.s.c.annotation.AnnotationTypeMapping   : Support for convention-based annotation attribute overrides is deprecated and will be removed in Spring Framework 6.2. Please annotate the following attributes in @org.axonframework.eventsourcing.EventSourcingHandler with appropriate @AliasFor declarations: [payloadType]
-2023-12-03T11:08:15.174+02:00  WARN 66689 --- [           main] o.s.c.annotation.AnnotationTypeMapping   : Support for convention-based annotation attribute overrides is deprecated and will be removed in Spring Framework 6.2. Please annotate the following attributes in @org.axonframework.eventsourcing.EventSourcingHandler with appropriate @AliasFor declarations: [payloadType]
-2023-12-03T11:08:15.652+02:00  INFO 66689 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-03T11:08:15.692+02:00  INFO 66689 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 2 JPA repository interfaces.
-2023-12-03T11:08:15.948+02:00  WARN 66689 --- [           main] o.s.c.annotation.AnnotationTypeMapping   : Support for convention-based annotation attribute overrides is deprecated and will be removed in Spring Framework 6.2. Please annotate the following attributes in @org.axonframework.modelling.command.AggregateIdentifier with appropriate @AliasFor declarations: [routingKey]
-2023-12-03T11:08:16.164+02:00  INFO 66689 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-03T11:08:16.196+02:00  INFO 66689 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2023-12-03T11:08:16.215+02:00  INFO 66689 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2023-12-03T11:08:16.327+02:00  INFO 66689 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-12-03T11:08:16.340+02:00  INFO 66689 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-12-03T11:08:16.432+02:00  INFO 66689 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2023-12-03T11:08:16.433+02:00  INFO 66689 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-12-03T11:08:16.920+02:00  INFO 66689 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2023-12-03T11:08:16.940+02:00  INFO 66689 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-03T11:08:17.232+02:00  INFO 66689 --- [           main] o.a.s.a.XStreamAutoConfiguration         : Initializing an XStream instance since none was found. The auto configuration base packages will be used as wildcards for the XStream security settings.
-2023-12-03T11:08:17.305+02:00  INFO 66689 --- [           main] o.a.s.util.XStreamSecurityTypeUtility    : Constructing wildcard type for base package [com.etpa.meterreading].
-2023-12-03T11:08:17.305+02:00  INFO 66689 --- [           main] o.a.s.util.XStreamSecurityTypeUtility    : Constructing wildcard type for base package [org.axonframework.eventhandling.tokenstore].
-2023-12-03T11:08:17.305+02:00  INFO 66689 --- [           main] o.a.s.util.XStreamSecurityTypeUtility    : Constructing wildcard type for base package [org.axonframework.eventhandling.deadletter.jpa].
-2023-12-03T11:08:17.306+02:00  INFO 66689 --- [           main] o.a.s.util.XStreamSecurityTypeUtility    : Constructing wildcard type for base package [org.axonframework.modelling.saga.repository.jpa].
-2023-12-03T11:08:17.313+02:00  INFO 66689 --- [           main] o.a.serialization.ChainingConverter      : ContentTypeConverter of type [class org.axonframework.serialization.xml.Dom4JToByteArrayConverter] is ignored. It seems to rely on a class that is not available in the class loader: org/dom4j/Document
-2023-12-03T11:08:17.313+02:00  INFO 66689 --- [           main] o.a.serialization.ChainingConverter      : ContentTypeConverter of type [class org.axonframework.serialization.xml.InputStreamToDom4jConverter] is ignored. It seems to rely on a class that is not available in the class loader: org/dom4j/Document
-2023-12-03T11:08:17.313+02:00  INFO 66689 --- [           main] o.a.serialization.ChainingConverter      : ContentTypeConverter of type [class org.axonframework.serialization.xml.XomToStringConverter] is ignored. It seems to rely on a class that is not available in the class loader: nu/xom/Document
-2023-12-03T11:08:17.313+02:00  INFO 66689 --- [           main] o.a.serialization.ChainingConverter      : ContentTypeConverter of type [class org.axonframework.serialization.xml.InputStreamToXomConverter] is ignored. It seems to rely on a class that is not available in the class loader: nu/xom/ParsingException
-2023-12-03T11:08:17.353+02:00  INFO 66689 --- [           main] o.a.config.AxonIQConsoleModule           : 
-################################################################################################
-## You have not configured AxonIQ Console. AxonIQ Console provides out-of-the box monitoring  ##
-## and management capabilities for your Axon Application, starting with it is free.           ##
-## Visit https://console.axoniq.io for more information!                                      ##
-## Suppress this message by setting system property disable-axoniq-console-message to true.   ##
-################################################################################################
-
-2023-12-03T11:08:17.458+02:00  WARN 66689 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-12-03T11:08:17.951+02:00  INFO 66689 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
-2023-12-03T11:08:17.970+02:00  INFO 66689 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2023-12-03T11:08:18.043+02:00  INFO 66689 --- [           main] c.e.m.MeterreadingV1ApplicationTests     : Started MeterreadingV1ApplicationTests in 3.025 seconds (process running for 3.449)
-2023-12-03T11:08:18.245+02:00  INFO 66689 --- [regate.meter]-0] o.a.e.TrackingEventProcessor             : Worker assigned to segment Segment[0/0] for processing
-2023-12-03T11:08:18.245+02:00  INFO 66689 --- [gate.profile]-0] o.a.e.TrackingEventProcessor             : Worker assigned to segment Segment[0/0] for processing
-2023-12-03T11:08:18.251+02:00  INFO 66689 --- [regate.meter]-0] o.a.e.TrackingEventProcessor             : Using current Thread for last segment worker: TrackingSegmentWorker{processor=com.etpa.meterreading.aggregate.meter, segment=Segment[0/0]}
-2023-12-03T11:08:18.251+02:00  INFO 66689 --- [gate.profile]-0] o.a.e.TrackingEventProcessor             : Using current Thread for last segment worker: TrackingSegmentWorker{processor=com.etpa.meterreading.aggregate.profile, segment=Segment[0/0]}
-2023-12-03T11:08:18.253+02:00  INFO 66689 --- [regate.meter]-0] o.a.e.TrackingEventProcessor             : Fetched token: null for segment: Segment[0/0]
-2023-12-03T11:08:18.253+02:00  INFO 66689 --- [gate.profile]-0] o.a.e.TrackingEventProcessor             : Fetched token: null for segment: Segment[0/0]
-]]></system-out>
-  </testcase>
+  <testcase name="testCreateProfileFraction" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.148"/>
+  <testcase name="testUpdateProfileFraction" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.003"/>
 </testsuite>
