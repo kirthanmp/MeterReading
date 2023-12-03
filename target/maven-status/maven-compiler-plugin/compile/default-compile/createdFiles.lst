@@ -22,6 +22,7 @@ com/etpa/meterreading/utils/AxonConfig.class
 com/etpa/meterreading/dto/meter/MeterReadingResponse$MeterReadingResponseBuilder.class
 com/etpa/meterreading/model/ProfileFractionAggregateModel.class
 com/etpa/meterreading/command/meter/MeterReadingUpdateCommand.class
+com/etpa/meterreading/entities/MeterReadingQueryEntity$MeterReadingQueryEntityBuilder.class
 com/etpa/meterreading/utils/Status.class
 com/etpa/meterreading/event/profile/ProfileFractionCreateEventProfile.class
 com/etpa/meterreading/event/meter/UpdatedMeterReadingEvent.class
@@ -42,6 +43,7 @@ com/etpa/meterreading/dto/meter/MeterReadingListDTO.class
 com/etpa/meterreading/service/meter/MeterReadingQueryService.class
 com/etpa/meterreading/dto/meter/MeterReadingResponse.class
 com/etpa/meterreading/controller/meter/MeterReadingCommandController.class
+com/etpa/meterreading/dto/meter/MeterReadingListDTO$MeterReadingListDTOBuilder.class
 com/etpa/meterreading/aggregate/profile/ProfileFractionQueryManager.class
 com/etpa/meterreading/dto/meter/MeterReadingDTO.class
 com/etpa/meterreading/service/meter/MeterReadingQueryServiceImpl.class
@@ -52,6 +54,7 @@ com/etpa/meterreading/event/meter/DeletedMeterReadingEvent.class
 com/etpa/meterreading/service/profile/ProfileFractionQueryServiceImpl.class
 com/etpa/meterreading/dto/profile/ProfileFractionResponse.class
 com/etpa/meterreading/dto/profile/FractionDTO$FractionDTOBuilder.class
+com/etpa/meterreading/dto/meter/ReadingDTO$ReadingDTOBuilder.class
 com/etpa/meterreading/repository/MeterReadingRepository.class
 com/etpa/meterreading/event/profile/ActivatedProfileFractionEventProfile.class
 com/etpa/meterreading/controller/meter/MeterReadingQueryController.class
