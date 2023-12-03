@@ -1,5 +1,9 @@
+com/etpa/meterreading/controller/profile/ProfileFractionCommandControllerTest.class
 com/etpa/meterreading/service/profile/ProfileFractionQueryServiceImplTest.class
+com/etpa/meterreading/controller/profile/ProfileFractionQueryControllerTest.class
 com/etpa/meterreading/service/meter/MeterReadingQueryServiceImplTest.class
 com/etpa/meterreading/MeterreadingV1ApplicationTests.class
 com/etpa/meterreading/service/profile/ProfileFractionCommandServiceImplTest.class
+com/etpa/meterreading/controller/meter/MeterReadingCommandControllerTest.class
+com/etpa/meterreading/controller/meter/MeterReadingQueryControllerTest.class
 com/etpa/meterreading/service/meter/MeterReadingCommandServiceImplTest.class

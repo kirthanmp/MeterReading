@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.007" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.etpa.meterreading.controller.profile.ProfileFractionQueryControllerTest" time="0.009" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -8,7 +8,6 @@
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
     <property name="user.timezone" value="Africa/Johannesburg"/>
-    <property name="org.jboss.logging.provider" value="slf4j"/>
     <property name="os.name" value="Mac OS X"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -30,8 +29,6 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
-    <property name="java.awt.headless" value="true"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
     <property name="surefire.real.class.path" value="/Users/kirthan.puttegowda/Project/Others/ETPA/github/MeterReading/target/surefire/surefirebooter-20231203170242198_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -48,13 +45,10 @@
     <property name="localRepository" value="/Users/kirthan.puttegowda/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
     <property name="java.io.tmpdir" value="/var/folders/c1/v2y5598n1bq2zhf6lq90vrxc0000gn/T/"/>
-    <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="java.version" value="21.0.1"/>
     <property name="user.dir" value="/Users/kirthan.puttegowda/Project/Others/ETPA/github/MeterReading"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="74615"/>
-    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/kirthan.puttegowda/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
@@ -65,8 +59,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testCreateMeterReadingWithInvalidReading" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.001"/>
-  <testcase name="testUpdateMeterReadingWithInvalidReading" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.002"/>
-  <testcase name="testCreateMeterReading" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.001"/>
-  <testcase name="testUpdateMeterReading" classname="com.etpa.meterreading.service.meter.MeterReadingCommandServiceImplTest" time="0.001"/>
+  <testcase name="testGetProfileFractionByProfile" classname="com.etpa.meterreading.controller.profile.ProfileFractionQueryControllerTest" time="0.004"/>
+  <testcase name="testGetProfileFractionById" classname="com.etpa.meterreading.controller.profile.ProfileFractionQueryControllerTest" time="0.001"/>
+  <testcase name="testListEventsForProfileFraction" classname="com.etpa.meterreading.controller.profile.ProfileFractionQueryControllerTest" time="0.001"/>
 </testsuite>
