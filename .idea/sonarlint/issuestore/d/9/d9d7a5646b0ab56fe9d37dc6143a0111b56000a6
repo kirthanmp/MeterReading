@@ -1,0 +1,9 @@
+
+t
+java:S3776Q"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ã…Û‘ûÿÿÿÿ8±­ÖÂ1
+h
+java:S1854k"FRemove this useless assignment to local variable "monthlyConsumption".(Ï‰Ú¤ıÿÿÿÿ8±­ÖÂ1
+e
+java:S1854j"HRemove this useless assignment to local variable "previousMeterReading".(ÄìÇê8±­ÖÂ1
+`
+java:S1155R">Use isEmpty() to check whether the collection is empty or not.(¸×¾¢ùÿÿÿÿ8±­ÖÂ1

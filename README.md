@@ -5,9 +5,9 @@ ETPA - Meter Reading
 
 Clone the repository
 
-https://github.com/githubmpk/MeterReading
+https://github.com/kirthanmp/MeterReading.git
 
-git clone https://github.com/githubmpk/MeterReading.git
+git clone https://github.com/kirthanmp/MeterReading.git
 or Download the zip file
 
 ## Compilation

@@ -1,0 +1,9 @@
+
+`
+java:S2130?">Use "Double.parseDouble" for this string-to-double conversion.(…ëÁŠøÿÿÿÿ8çæÛÛÂ1
+c
+java:S1126["AReplace this if-then-else statement by a single return statement.(ïû¿Àıÿÿÿÿ8éæÛÛÂ1
+ƒ
+java:S1128"fRemove this unused import 'com.etpa.meterreading.command.profile.ProfileFractionDeleteProfileCommand'.(£•£8êæÛÛÂ1
+s
+java:S1128"QRemove this unused import 'com.etpa.meterreading.dto.profile.ProfileFractionDTO'.(òÒ‘ìúÿÿÿÿ8êæÛÛÂ1
