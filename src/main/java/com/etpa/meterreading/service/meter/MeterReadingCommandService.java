@@ -13,4 +13,6 @@ public interface MeterReadingCommandService {
 
     public CompletableFuture<List<MeterReadingResponse>> updateMeterReading(List<MeterReadingListDTO> meterReadingListDTO);
 
+    public MeterReadingResponse deleteMeterReading(String meterReadingId);
+
 }

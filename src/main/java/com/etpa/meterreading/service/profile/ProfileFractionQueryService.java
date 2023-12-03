@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProfileFractionQueryService {
 
-    public List<Object> listEventsForProfileFraction(String profileID);
+    List<Object> listEventsForProfileFraction(String profileID);
 
     ProfileFractionQueryEntity getProfileFraction(String profileID);
 

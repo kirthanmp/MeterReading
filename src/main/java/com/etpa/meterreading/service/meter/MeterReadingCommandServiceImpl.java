@@ -140,12 +140,8 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
         return totalMeterReading;
     }
 
-
-
-
     @Override
     public CompletableFuture<List<MeterReadingResponse>> updateMeterReading(List<MeterReadingListDTO> meterReadingListDTO) {
-
         List<MeterReadingResponse> responses = new ArrayList<>();
         int size = meterReadingListDTO.stream().mapToInt(meterReadingDTOList -> meterReadingDTOList.getReadingDTOList().size()).sum();
         List<MeterReadingQueryEntity> meterReadingList = meterReadingQueryService.getMeterReadingByMeterID(meterReadingListDTO.get(0).getMeterId());
@@ -173,5 +169,10 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
             }
         }
         return CompletableFuture.completedFuture(responses);
+    }
+
+    @Override
+    public MeterReadingResponse deleteMeterReading(String meterReadingId) {
+        return null;
     }
 }

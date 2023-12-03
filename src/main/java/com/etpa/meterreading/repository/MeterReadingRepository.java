@@ -9,14 +9,16 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MeterReadingRepository extends CrudRepository<MeterReadingQueryEntity, String>, JpaSpecificationExecutor<MeterReadingQueryEntity>
+public interface MeterReadingRepository extends CrudRepository<MeterReadingQueryEntity, String>,
+        JpaSpecificationExecutor<MeterReadingQueryEntity>
     {
 
-    @Query(value = "SELECT v.meterID FROM MeterReadingQueryEntity v WHERE v.profile = :profile")
-    List<MeterReadingQueryEntity> findMeterReadingQueryEntitiesByProfile(String profile);
+    List<MeterReadingQueryEntity> findMeterReadingQueryEntityByProfile(String profile);
 
 
     List<MeterReadingQueryEntity> findMeterReadingQueryEntityByMeterID(String meterID);
+
+    MeterReadingQueryEntity findMeterReadingQueryEntityByMeterIDAndMonths(String meterID, String month);
 
 
 }
