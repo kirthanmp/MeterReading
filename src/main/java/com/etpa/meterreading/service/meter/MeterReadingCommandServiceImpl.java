@@ -7,6 +7,7 @@ import com.etpa.meterreading.dto.meter.MeterReadingResponse;
 import com.etpa.meterreading.dto.meter.ReadingDTO;
 import com.etpa.meterreading.entities.MeterReadingQueryEntity;
 import com.etpa.meterreading.entities.ProfileFractionQueryEntity;
+import com.etpa.meterreading.service.helper.StatusMessage;
 import com.etpa.meterreading.service.profile.ProfileFractionQueryService;
 import com.etpa.meterreading.utils.Status;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -34,14 +35,15 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
     @Override
     public CompletableFuture<List<MeterReadingResponse>> createMeterReading(List<MeterReadingListDTO> meterReadingListDTO) {
         List<MeterReadingResponse> responses = new ArrayList<>();
+        String message = "Meter reading created successfully";
         int size = meterReadingListDTO.stream().mapToInt(meterReadingDTOList -> meterReadingDTOList.getReadingDTOList().size()).sum();
         CompletableFuture<String>[] completableFutures = new CompletableFuture[size];
         for (MeterReadingListDTO meterReadingDTOList : meterReadingListDTO) {
             String meterId = meterReadingDTOList.getMeterId();
             String profile = meterReadingDTOList.getProfile();
-            boolean isValidReading = isValidReading(Arrays.asList(meterReadingDTOList));
             /*Check if meter reading is valid*/
-            if (isValidReading) {
+            StatusMessage status = isValidReading(Arrays.asList(meterReadingDTOList), message);
+            if (status.isValid()) {
                 for (ReadingDTO meterReadingDTO : meterReadingDTOList.getReadingDTOList()) {
                     completableFutures[meterReadingListDTO.indexOf(meterReadingDTOList)] =
                             commandGateway.send(new MeterReadingCreateCommand(
@@ -53,9 +55,9 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
                             ));
                 }
 
-                responses.add(buildResponse(meterId, profile, true, "Meter Reading Created Successfully"));
+                responses.add(buildResponse(meterId, profile, status.isValid(), status.getMessage()));
             } else {
-                responses.add(buildResponse(meterId, profile, false, "Meter Reading is not Valid"));
+                responses.add(buildResponse(meterId, profile, status.isValid(), status.getMessage()));
             }
         }
         return CompletableFuture.completedFuture(responses);
@@ -79,10 +81,11 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
         }
     }
 
-    private boolean isValidReading(List<MeterReadingListDTO> meterReadingListDTO) {
+    private StatusMessage isValidReading(List<MeterReadingListDTO> meterReadingListDTO, String message) {
         /* Check if profile fraction exists */
         if (profileFractionQueryService.getProfileFractionByProfile(meterReadingListDTO.get(0).getProfile()).size() == 0) {
-            return false;
+            message = "Profile Fraction Does not Exist";
+            return buildResponse(false, message);
         }
         /* Check if the consumptions are correct, it should always be in increasing order, cannot have less than previous month.*/
         for (MeterReadingListDTO meterReadingDTOList : meterReadingListDTO) {
@@ -90,11 +93,13 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
             for (ReadingDTO meterReadingDTO : meterReadingDTOList.getReadingDTOList()) {
                 if (count == 0) {
                     if (meterReadingDTO.getMeterReading() < meterReadingDTOList.getReadingDTOList().get(count).getMeterReading()) {
-                        return false;
+                        message = "Meter Reading Should be in Increasing Order";
+                        return buildResponse(false, message);
                     }
                 } else {
                     if (meterReadingDTO.getMeterReading() < meterReadingDTOList.getReadingDTOList().get(count - 1).getMeterReading()) {
-                        return false;
+                        message = "Meter Reading Should be in Increasing Order";
+                        return buildResponse(false, message);
                     }
                 }
                 count++;
@@ -122,11 +127,12 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
                 double lowFractionMeterReading = (int) (fractionMeterReading * 0.75);
                 /*check fractionMeterReading is within highFractionMeterReading and lowFractionMeterReading*/
                 if (monthlyConsumption > highFractionMeterReading || monthlyConsumption > lowFractionMeterReading) {
-                    return false;
+                    message = "Monthly Consumption Should be within 25% of Profile Fraction, abnormal consumption";
+                    return buildResponse(false, message);
                 }
             }
         }
-        return true;
+        return buildResponse(true, message);
     }
 
     private int getTotalMeterReading(List<MeterReadingListDTO> meterReadingListDTO) {
@@ -142,14 +148,15 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
     @Override
     public CompletableFuture<List<MeterReadingResponse>> updateMeterReading(List<MeterReadingListDTO> meterReadingListDTO) {
         List<MeterReadingResponse> responses = new ArrayList<>();
+        String message = "Meter reading updated successfully";
         int size = meterReadingListDTO.stream().mapToInt(meterReadingDTOList -> meterReadingDTOList.getReadingDTOList().size()).sum();
         List<MeterReadingQueryEntity> meterReadingList = meterReadingQueryService.getMeterReadingByMeterID(meterReadingListDTO.get(0).getMeterId());
         CompletableFuture<String>[] completableFutures = new CompletableFuture[size];
         for (MeterReadingListDTO meterReadingDTOList : meterReadingListDTO) {
             String meterId = meterReadingDTOList.getMeterId();
             String profile = meterReadingDTOList.getProfile();
-            boolean isValidReading = isValidReading(Arrays.asList(meterReadingDTOList));
-            if (isValidReading) {
+            StatusMessage status = isValidReading(Arrays.asList(meterReadingDTOList), message);
+            if (status.isValid()) {
                 for (ReadingDTO meterReadingDTO : meterReadingDTOList.getReadingDTOList()) {
                     completableFutures[meterReadingListDTO.indexOf(meterReadingDTOList)] =
                             commandGateway.send(new MeterReadingUpdateCommand(
@@ -161,12 +168,19 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
                             ));
                 }
 
-                responses.add(buildResponse(meterId, profile, true, "Meter Reading Updated Successfully"));
+                responses.add(buildResponse(meterId, profile, status.isValid(), status.getMessage()));
             } else {
-                responses.add(buildResponse(meterId, profile, false, "Meter Reading is not Valid"));
+                responses.add(buildResponse(meterId, profile, status.isValid(), status.getMessage()));
             }
         }
         return CompletableFuture.completedFuture(responses);
+    }
+
+    private StatusMessage buildResponse(boolean isValid, String message) {
+        return StatusMessage.builder()
+                .isValid(isValid)
+                .message(message)
+                .build();
     }
 
     @Override

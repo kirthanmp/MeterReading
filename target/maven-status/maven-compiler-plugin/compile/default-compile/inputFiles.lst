@@ -51,5 +51,6 @@
 /Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/aggregate/profile/ProfileFractionAggregate.java
 /Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/command/meter/MeterReadingUpdateCommand.java
 /Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/command/meter/MeterReadingDeleteCommand.java
+/Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/service/helper/StatusMessage.java
 /Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/service/meter/MeterReadingQueryServiceImpl.java
 /Users/kirthan.puttegowda/Project/Others/ETPA/Submission/MeterReading/src/main/java/com/etpa/meterreading/event/profile/ProfileFractionCreateEventProfile.java

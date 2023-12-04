@@ -37,6 +37,7 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
         CompletableFuture<String>[] completableFutures = new CompletableFuture[size];
         for (ProfileFractionListDTO profileFractionDTOList : profileFractionListDTO) {
             String profile = profileFractionDTOList.getProfile();
+            /* Check if fractions are valid */
             boolean isValidFraction = isValidFraction(Arrays.asList(profileFractionDTOList));
             if (isValidFraction) {
                 for (FractionDTO profileFractionDTO : profileFractionDTOList.getProfileFractionDTOList()) {
@@ -81,6 +82,7 @@ public class ProfileFractionCommandServiceImpl implements ProfileFractionCommand
     }
 
     private boolean isValidFraction(List<ProfileFractionListDTO> profileFractionListDTO) {
+        /* Total sum of all fraction should not be more than 1 */
         Float fraction = 0.0f;
         for (ProfileFractionListDTO profileFractionDTOList : profileFractionListDTO) {
             for (FractionDTO profileFractionDTO : profileFractionDTOList.getProfileFractionDTOList()) {

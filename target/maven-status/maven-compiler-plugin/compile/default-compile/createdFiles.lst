@@ -43,6 +43,7 @@ com/etpa/meterreading/dto/meter/MeterReadingListDTO.class
 com/etpa/meterreading/service/meter/MeterReadingQueryService.class
 com/etpa/meterreading/dto/meter/MeterReadingResponse.class
 com/etpa/meterreading/controller/meter/MeterReadingCommandController.class
+com/etpa/meterreading/service/helper/StatusMessage.class
 com/etpa/meterreading/dto/meter/MeterReadingListDTO$MeterReadingListDTOBuilder.class
 com/etpa/meterreading/aggregate/profile/ProfileFractionQueryManager.class
 com/etpa/meterreading/dto/meter/MeterReadingDTO.class
@@ -58,6 +59,7 @@ com/etpa/meterreading/dto/meter/ReadingDTO$ReadingDTOBuilder.class
 com/etpa/meterreading/repository/MeterReadingRepository.class
 com/etpa/meterreading/event/profile/ActivatedProfileFractionEventProfile.class
 com/etpa/meterreading/controller/meter/MeterReadingQueryController.class
+com/etpa/meterreading/service/helper/StatusMessage$StatusMessageBuilder.class
 com/etpa/meterreading/aggregate/meter/MeterReadingQueryManager.class
 com/etpa/meterreading/dto/profile/ProfileFractionResponse$ProfileFractionResponseBuilder.class
 com/etpa/meterreading/command/BaseProfileCommand.class
