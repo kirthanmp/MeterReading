@@ -40,6 +40,7 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
             String meterId = meterReadingDTOList.getMeterId();
             String profile = meterReadingDTOList.getProfile();
             boolean isValidReading = isValidReading(Arrays.asList(meterReadingDTOList));
+            /*Check if meter reading is valid*/
             if (isValidReading) {
                 for (ReadingDTO meterReadingDTO : meterReadingDTOList.getReadingDTOList()) {
                     completableFutures[meterReadingListDTO.indexOf(meterReadingDTOList)] =
@@ -79,9 +80,11 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
     }
 
     private boolean isValidReading(List<MeterReadingListDTO> meterReadingListDTO) {
+        /* Check if profile fraction exists */
         if (profileFractionQueryService.getProfileFractionByProfile(meterReadingListDTO.get(0).getProfile()).size() == 0) {
             return false;
         }
+        /* Check if the consumptions are correct, it should always be in increasing order, cannot have less than previous month.*/
         for (MeterReadingListDTO meterReadingDTOList : meterReadingListDTO) {
             int count = 0;
             for (ReadingDTO meterReadingDTO : meterReadingDTOList.getReadingDTOList()) {
@@ -97,6 +100,7 @@ public class MeterReadingCommandServiceImpl implements MeterReadingCommandServic
                 count++;
             }
         }
+        /* Monthly consumption should have consistency with fraction, with an allowed tolerance of 25% */
         int totalMeterReading = getTotalMeterReading(meterReadingListDTO);
         for (MeterReadingListDTO meterReadingDTOList : meterReadingListDTO) {
             List<ProfileFractionQueryEntity> profileFractionQueryEntityList = profileFractionQueryService.getProfileFractionByProfile(meterReadingDTOList.getProfile());
